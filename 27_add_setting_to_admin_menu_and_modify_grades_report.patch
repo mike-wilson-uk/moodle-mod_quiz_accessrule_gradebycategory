@@ -1,0 +1,41 @@
+commit d510a6c53f992d331eecd38e73255771cd3ca76f
+Author: Mike Wilson <michael.wilson@port.ac.uk>
+Date:   Tue Jun 24 16:43:21 2014 +0100
+
+    grade by category patch
+
+diff --git mod/quiz/report/overview/report.php b/mod/quiz/report/overview/report.php
+index ebd571c..39fd45b 100644
+--- mod/quiz/report/overview/report.php
++++ mod/quiz/report/overview/report.php
+@@ -28,7 +28,8 @@ defined('MOODLE_INTERNAL') || die();
+ require_once($CFG->dirroot . '/mod/quiz/report/attemptsreport.php');
+ require_once($CFG->dirroot . '/mod/quiz/report/overview/overview_options.php');
+ require_once($CFG->dirroot . '/mod/quiz/report/overview/overview_form.php');
+-require_once($CFG->dirroot . '/mod/quiz/report/overview/overview_table.php');
++//Grade By Category Change to Core : Following line has been changed. Required filename changed.
++require_once($CFG->dirroot . '/mod/quiz/accessrule/gradebycategory/overview_table_with_category_totals.php');
+ 
+ 
+ /**
+@@ -68,7 +69,8 @@ class quiz_overview_report extends quiz_attempts_report {
+         // Prepare for downloading, if applicable.
+         $courseshortname = format_string($course->shortname, true,
+                 array('context' => context_course::instance($course->id)));
+-        $table = new quiz_overview_table($quiz, $this->context, $this->qmsubselect,
++        //Grade By Category Change to Core : Following line has been changed. Class name changed.
++        $table = new quiz_overview_table_with_category_totals($quiz, $this->context, $this->qmsubselect,
+                 $options, $groupstudents, $students, $questions, $options->get_url());
+         $filename = quiz_report_download_filename(get_string('overviewfilename', 'quiz_overview'),
+                 $courseshortname, $quiz->name);
+diff --git mod/quiz/settings.php b/mod/quiz/settings.php
+index 97a6a88..dadcf33 100644
+--- mod/quiz/settings.php
++++ mod/quiz/settings.php
+@@ -257,3 +257,6 @@ if (empty($reportsbyname) && empty($rulesbyname)) {
+ }
+ 
+ $settings = null; // We do not want standard settings link.
++
++//Grade By Category Change to Core : Following line has been added.
++require($CFG->dirroot.'/mod/quiz/accessrule/gradebycategory/settings.php');

@@ -47,10 +47,10 @@ Installation
 
 To install using git, type (or copy and paste) these commands in the root of your Moodle install :
 
-    git clone git://github.com/jamiepratt/moodle-mod_quiz_accessrule_gradebycategory.git mod/quiz/accessrule/gradebycategory
+    git clone git://github.com/mike-wilson-uk/moodle-mod_quiz_accessrule_gradebycategory.git mod/quiz/accessrule/gradebycategory
     echo '/mod/quiz/accessrule/gradebycategory/' >> .git/info/exclude
 
-Alternatively, download the zip from [this url](https://github.com/jamiepratt/moodle-mod_quiz_accessrule_gradebycategory/archive/master.zip)
+Alternatively, download the zip from [this url](https://github.com/mike-wilson-uk/moodle-mod_quiz_accessrule_gradebycategory/archive/master.zip)
 unzip it into the mod/quiz/accessrule folder, and then rename the new
 folder to gradebycategory.
 
@@ -60,7 +60,7 @@ folder to gradebycategory.
 A number of changes to core code are necessary for full functionality. You can apply the first two of these changes by applying
 the supplied patch. You can do this on Linux with the following command which you should run from the root of your moodle install :
 
-    patch -p0 < mod/quiz/accessrule/gradebycategory/add_setting_to_admin_menu_and_modify_grades_report.patch
+    patch -p0 < mod/quiz/accessrule/gradebycategory/29_add_setting_to_admin_menu_and_modify_grades_report.patch
 
 You still have to manually [change your theme](#adding-category-total-columns-to-details-of-past-attempts-displayed-to-students-modify-your-theme).
 
